@@ -2,6 +2,11 @@
 
 /*When doing these tasks, we recommend using console.log to test the output of your code to make sure it works correctly.*/
 
+/////////////////////////////Sandbox Testing ///////////////////////////////////////
+
+
+
+
 ///////////////Menu Items (MVP)///////////////////
 const latte = {name: "Cafe Latte", price: 4, category: "Drinks"};
 const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakfast"};
@@ -15,9 +20,17 @@ The function should:
   Example createMenuItem('tacos', 8, 'Lunch') should return {name: 'tacos', price: 8, category: 'Lunch'}
 */
 
-function createMenuItem(/*Your code here*/){
-    /*Your code here*/
+function createMenuItem(name, price, category){
+  const menuItems = {
+    name: name,
+    price: price,
+    category: category
+  }
+  return menuItems;
 }
+
+console.log('Task 1a:', createMenuItem('tacos', 8, 'Lunch'));
+
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Invoke your function!
@@ -28,7 +41,9 @@ Test your createMenuItems function by doing the following:
   
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
-
+console.log('Task 1b.1:', createMenuItem('ham', 3.50, 'Breakfast'));
+console.log('Task 1b.2:', createMenuItem('casserole', 12, 'Dinner'));
+console.log('Task 1b.3:', createMenuItem('potato skins', 8, 'Appetizers'));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -43,12 +58,26 @@ Using the burger object below do the following:
 
   For example: burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2
 */
-const burger = {
+
+
+  const burger = {
   name: "Burger", 
   price: 18, 
   category: "Lunch", 
-  
+  discount: function (type) {
+    if (type === 'teacher' || type === 'student') {
+      return (this.price * .75);
+    } else if (type === 'public') {
+      return (this.price * .90); 
+    } 
+  }
+
 }
+
+console.log('Task 2:', burger.discount("student"));
+
+
+
 
 
 
@@ -69,6 +98,95 @@ Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
 
+if (reviews.name === 'Julius') {
+  console.log(reviews.feedback);
+}
+
+// let newReview = {
+//   name: 'Roxanne',
+//   rating: 6,
+//   feedback: 'nothing to report'
+// }
+// // adding object to array at beginning
+// reviews.unshift(newReview);
+// console.log('Adding to object array Reviews', reviews);
+
+// // adding object to array at end
+// reviews.push(newReview);
+// console.log('Adding to end of array', reviews);
+
+// // adding object to array in middle
+// reviews.splice(2, 0, newReview)
+// console.log('New splice', reviews);
+
+// // find object with name: Julius - return feedback content
+// let review = reviews.find(review => review.name === 'Julius');
+// console.log('Find by object name value', review)
+
+// // get all objects where rating === 3
+// let reviewFilter = reviews.filter(reviewFilter => reviewFilter.rating === 3);
+// console.log('Filter by Rating = 3', reviewFilter)
+
+// // categorize objects by group rating, poor avg and high
+
+// let ratingsGroup = reviews.map(review => {
+//   if (review.rating < 3) {
+//     return 'poor';
+//   }
+//   if (review.rating >= 3 && review.rating < 4) {
+//     return 'average';
+//   }
+//   if (review.rating >=4) {
+//     return 'high';
+//   }
+
+// });
+
+// console.log('spit out text based on rating value:', ratingsGroup);
+
+// // create rating groups that create a new key/value pair in the object
+// let ratingsGroups = reviews.map(review => {
+//   let properties = {
+//     "rating": review.rating,
+//     "group text": 'average'
+//   };
+  
+//   if (properties.rating < 3) {
+//     properties['group text'] = 'low';
+//   }
+//   if (properties.rating >= 3 && review.rating < 4) {
+//     properties['group text'] = 'average';
+//   }
+//   if (properties.rating >=4) {
+//     properties['group text'] = 'high';
+// }
+// return properties;
+// });
+// console.log('create ratings group for each object based on rating:', ratingsGroups);
+ 
+// // add new property to include the new ratings group category
+
+// reviews.forEach(review => {
+//   review['rating group'] = "average";
+//   if (review.rating < 3) {
+//     review['rating group'] = "low";
+//   }
+//   if (review.rating >= 4) {
+//     review['rating group'] = "high";
+//   }
+
+// });
+
+// console.log('add ratings group key/value pair to each object:', reviews);
+
+// // sort reviews based on rating value
+// let sortedReviews = reviews.sort((c1, c2) => (c1.rating < c2.rating) ? 1 : (c1.rating > c2.rating) ? -1 : 0);
+// console.log('Sort by rating:', sortedReviews);
+
+// // are some of the ratings 'low'
+// console.log(reviews.some(review => review['rating group'] === "low"));
+// console.log(reviews.every(review => review['rating group'] === 'low'));
+
 
 
 
@@ -78,7 +196,8 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 
-
+reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays";
+console.log('Task 4:', reviews.feedback);
 
 
 
@@ -91,9 +210,21 @@ Write a function that creates an object with name, rating, feedback, add the new
   4. should return the resulting array
 */
 
-function addReview(/*Your Code Here */){
-  /*Your Code Here */
+function addReview(array){
+  const newFeedback = {
+    name: 'Reginold',
+    rating: 2,
+    feedback: 'hated it'
+  };
+
+  array.push(newFeedback);
+  return reviews;
+
 }
+console.log('Task 5:', addReview(reviews));
+
+
+
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Write a function to return a review based on the index of the review in the array.
