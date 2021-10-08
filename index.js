@@ -77,10 +77,6 @@ Using the burger object below do the following:
 console.log('Task 2:', burger.discount("student"));
 
 
-
-
-
-
 ///////////////Reviews (MVP)///////////////////
 const reviews = [
     {name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and wonderful vegan options!"},
@@ -93,16 +89,6 @@ const reviews = [
     {name: "Reyna", rating: 3.5, feedback: ""},
 ]
 
-// const reviewsSecond = [
-//   {feedback:"Beautiful atmosphere and wonderful vegan options!", name: "Daniela", rating: 5},
-//   {feedback:"A little too hipster for my taste, but the burger was decent, if overpriced", name: "Jack", rating: 3},
-//   {feedback:"fun trivia and cool vibes", name: "Miranda", rating: 4},
-//   {feedback:"I don't leave my house often, but when I do, it's for this place. Highly reccomend.", name: "Wen", rating: 4.5},
-//   {feedback: "great selection of snacks and a nice cafe area to get work done during the day.", name: "Brett", rating: 3},
-//   {feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." , name: "Julius", rating: 2},
-//   {feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay.", name: "Lauren", rating: 4},
-//   {feedback: "", name: "Reyna", rating: 3.5},
-// ]
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Using the reviews array above:
@@ -336,16 +322,24 @@ Use the getLongReviews function below to do the following:
 
   For example: getLongReviews(reviews) would return:
   [
-    {name: "Wen", rating: 4.5, feedback:"I don't leave my house often, but when I do, it's for this place. Highly reccomend."},
+    {name: "Wen", rating: 4.5, feedback:"I don't leave my house often, but when I do, it's for this place. Highly recommend."},
     {name: "Brett", rating: 3, feedback: "great selection of snacks and a nice cafe area to get work done during the day."},
     {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." }
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
+function getLongReviews(array) {
+    longReviews = [];
+    for (let i = 0; i < array.length; i++) {
+    let feedback = array[i].feedback.split(" ");
+      if (feedback.length >= 15) {
+      longReviews.push(array[i]);
+    }
   }
-  
+    return longReviews;
+  }
+
+  console.log(getLongReviews(reviews));
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪💪💪💪💪 
 This stretch goal does not use the reviews data!  You create your own object in this stretch goal.
@@ -365,10 +359,24 @@ Use the carMaker function below to do the following:
 */
 
 
-function carMaker(/* code here */) {
-    /* code here */
-    
+function carMaker(odomReading) {
+    const car = {
+      odometer: odomReading,
+      drive: function(distance) {
+        this.odometer = this.odometer + distance;
+        return this.odometer;
+      }
+    }
+  return car;    
 }
+
+
+let hondaCivic = carMaker(50);
+console.log(hondaCivic.odometer);
+
+ console.log(hondaCivic.drive(40));
+ console.log(hondaCivic.drive(40));
+
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
