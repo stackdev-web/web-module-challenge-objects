@@ -93,14 +93,25 @@ const reviews = [
     {name: "Reyna", rating: 3.5, feedback: ""},
 ]
 
+// const reviewsSecond = [
+//   {feedback:"Beautiful atmosphere and wonderful vegan options!", name: "Daniela", rating: 5},
+//   {feedback:"A little too hipster for my taste, but the burger was decent, if overpriced", name: "Jack", rating: 3},
+//   {feedback:"fun trivia and cool vibes", name: "Miranda", rating: 4},
+//   {feedback:"I don't leave my house often, but when I do, it's for this place. Highly reccomend.", name: "Wen", rating: 4.5},
+//   {feedback: "great selection of snacks and a nice cafe area to get work done during the day.", name: "Brett", rating: 3},
+//   {feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." , name: "Julius", rating: 2},
+//   {feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay.", name: "Lauren", rating: 4},
+//   {feedback: "", name: "Reyna", rating: 3.5},
+// ]
+
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
 
-if (reviews.name === 'Julius') {
-  console.log(reviews.feedback);
-}
+  
+console.log('Julius feedback:', reviews[3].feedback);
+
 
 // let newReview = {
 //   name: 'Roxanne',
@@ -196,8 +207,9 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 
+
 reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays";
-console.log('Task 4:', reviews.feedback);
+console.log('Task 4:', reviews);
 
 
 
@@ -210,19 +222,38 @@ Write a function that creates an object with name, rating, feedback, add the new
   4. should return the resulting array
 */
 
-function addReview(array){
+function addReview(array, name, rating, feedback){
   const newFeedback = {
-    name: 'Reginold',
-    rating: 2,
-    feedback: 'hated it'
+    feedback: feedback,
+    name: name,
+    rating: rating
   };
 
   array.push(newFeedback);
-  return reviews;
+  return array;
 
 }
-console.log('Task 5:', addReview(reviews));
+console.log('Task 5:', addReview(reviews, 'Fred', 3, 'this is a feedback'));
 
+// const newObject = {
+//   feedback:  'this is a feedback',
+//   name: 'Fred',
+//   rating: 3
+// };
+
+
+// function addReview(array, object){
+//   const newFeedback = {
+//     feedback: object.feedback,
+//     name: object.name,
+//     rating: object.rating
+//   };
+
+//   array.push(newFeedback);
+//   return array;
+
+// }
+// console.log('Task 5:', addReview(reviews, newObject));
 
 
 
@@ -237,12 +268,14 @@ Use the getReviewByIndex function below to do the following:
 */
 
 
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
+function getReviewByIndex(array, indexNum) {
+
+  return `${array[indexNum].name} gave the restaurant a ${array[indexNum].rating} star review, and their feedback was: ${array[indexNum].feedback}`
 }
 
+console.log(getReviewByIndex(reviews, 0));
 
-  
+
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Write a function to get information about the most recent (last) review called `getLastReview`
@@ -256,8 +289,11 @@ Use the getLastReview function below to do the following:
 */
 
 
-function getLastReview(/*Your code here*/) {
-  /*Your code here*/
+function getLastReview(array) {
+  let index = array.length - 1;
+
+  return `${array[index].name} gave the restaurant a ${array[index].rating} star review, and their feedback was: ${array[index].feedback}`
+
 } 
 
 
@@ -278,11 +314,21 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+ function getReviewByRating(array, rating) {
+   let allReviews = [];
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].rating >= rating && array[i].rating < (rating+1)) {
+       allReviews.push(array[i]);
+      }
+      
+    }
+    return allReviews;
   }
-
+console.log(getReviewByRating(reviews, 4));
   
+
+
+
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
 Use the getLongReviews function below to do the following:
   1. Receive the array that holds all the reviews
